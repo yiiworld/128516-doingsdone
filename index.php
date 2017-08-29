@@ -146,9 +146,9 @@ $days_until_deadline = ($task_deadline_ts - $date_deadline)/86400;
                     </tr>
                     <?php endif; ?>
 
-                    <tr class="tasks__item task">
+                    <tr class="tasks__item task <?php if($days_until_deadline<=0) {echo ' task--important';} ?>">
 
-                        <td class="task__select" <?php if($days_until_deadline<=0) {echo 'class = "task--important"';} ?>>
+                        <td class="task__select" >
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden" type="checkbox">
                                 <span class="checkbox__text">Выполнить первое задание</span>
