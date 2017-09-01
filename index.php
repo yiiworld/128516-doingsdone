@@ -31,7 +31,51 @@ $arr_of_cases = array(
             "Категория" =>"Домашние дела", "Выполнен" => "Нет"),
         array("Задача" => "Заказать пиццу", "Дата выполнения" => "Нет",
             "Категория" =>"Домашние дела", "Выполнен" => "Нет"),
-)
+);
+
+function sum_of_cases($arr,$str){
+    $input = 0;
+    $study = 0;
+    $work = 0;
+    $home_of_cases = 0;
+    $auto = 0;
+    $my_all = 0;
+        foreach ($arr as $key =>$value){
+            switch ($value['Категория']){
+                case 'Входящие':
+                    $input +=1;
+                    break;
+                case 'Учеба':
+                    $study +=1;
+                    break;
+                case 'Работа':
+                    $work +=1;
+                    break;
+                case 'Домашние дела':
+                    $home_of_cases +=1;
+                    break;
+                case 'Авто':
+                    $auto +=1;
+                    break;
+            };
+            $my_all +=1;
+        }
+            switch ($str) {
+                case "Входящие":
+                    return $input;
+                case "Учеба":
+                    return $study;
+                case "Работа":
+                    return $work;
+                case "Домашние дела":
+                    return $home_of_cases;
+                case "Авто":
+                    return $auto;
+                case "Все":
+                    return $my_all;
+            }
+};
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,7 +131,7 @@ $arr_of_cases = array(
                                 echo '">';
                             }
                             print('<a class="main-navigation__list-item-link" href="#">' . $project_arr[$index].'</a>');
-                            print('<span class="main-navigation__list-item-count">'.$index.'</span>');
+                            print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$index]).'</span>');
                             $index++;
                         };
                         ?>
