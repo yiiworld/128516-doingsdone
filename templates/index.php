@@ -42,7 +42,7 @@
 
         <?php
 
-        foreach ($arr_of_cases as $key =>$value):?>
+        foreach ( $arr_of_cases as $key =>$value):?>
             <tr class="tasks__item task <?php if ($value['Выполнен']=='Да') echo ("task--completed")?>">
                 <td class="task__select">
                     <label class="checkbox task__checkbox">
