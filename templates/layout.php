@@ -112,8 +112,9 @@ function sum_of_cases($arr1,$str){
                         while ($index <= $count-1) {
                             print('<li class="main-navigation__list-item ');
                             action_progect($index);
-                            print('<button  class="main-navigation__list-item-link"  type="submit" name="tab" value="'.$index.'">'.$project_arr[$index].'</button>');
-                            print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$index]).'</span>');
+                            print('<a class="main-navigation__list-item-link" href="'.url_add($index).'">'.$project_arr[$index].'</a>');
+                            print($_GET['']);
+                             print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$index]).'</span>');
                             $index++;
                         };
                         ?>

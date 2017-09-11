@@ -14,7 +14,8 @@ function renderTemplate($path, $arr){
 };
 
 function url_add($int){
-   return ('http://localhost/doingsdone/128516-doingsdone/index.php');
+    $_GET['tab'] = $int;
+   return ('http://localhost/doingsdone/128516-doingsdone/index.php?tab='.$_GET['tab']);
 };
 
 function action_progect($index){
