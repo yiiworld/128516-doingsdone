@@ -15,8 +15,7 @@ $date_deadline = strtotime ("28.08.2017");
 // в эту переменную запишите кол-во дней до даты задачи
 $days_until_deadline = ($task_deadline_ts - $date_deadline)/86400;
 
-$project_arr = array(0 => "Все", 1 => "Входящие", 2 => "Учеба",
-    3 => "Работа", 4 => "Домашние дела", 5 => "Авто");
+
 
 
 function sum_of_cases($arr1,$str){
@@ -106,22 +105,19 @@ function sum_of_cases($arr1,$str){
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
+                        <form action="index.php" method="get">
                         <?php
                         $index = 0;
                         $count = count($project_arr);
                         while ($index <= $count-1) {
                             print('<li class="main-navigation__list-item ');
-                            if ($index == 0) {
-                                echo 'main-navigation__list-item--active">';
-                            } else {
-                                echo '">';
-                            }
-                            print('<a class="main-navigation__list-item-link" href="#">' . $project_arr[$index].'</a>');
+                            action_progect($index);
+                            print('<button  class="main-navigation__list-item-link"  type="submit" name="tab" value="'.$index.'">'.$project_arr[$index].'</button>');
                             print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$index]).'</span>');
                             $index++;
                         };
                         ?>
-
+                        </form>
                     </ul>
                 </nav>
 

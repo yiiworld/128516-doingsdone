@@ -42,7 +42,8 @@
 
         <?php
 
-        foreach ( $arr_of_cases as $key =>$value):?>
+        foreach ( $arr_of_cases as $key =>$value):
+            if ($project_arr[$_GET['tab']] == $value['Категория']){?>
             <tr class="tasks__item task <?php if ($value['Выполнен']=='Да') echo ("task--completed")?>">
                 <td class="task__select">
                     <label class="checkbox task__checkbox">
@@ -57,7 +58,21 @@
                 </td>
             </tr>
 
-        <?php endforeach; ?>
+        <?php }
+        else{ If ($_GET['tab'] == 0){?>
+            <tr class="tasks__item task <?php if ($value['Выполнен']=='Да') echo ("task--completed")?>">
+                <td class="task__select">
+                    <label class="checkbox task__checkbox">
+                        <input class="checkbox__input visually-hidden" type="checkbox" >
+                        <span class="checkbox__text"><?=htmlspecialchars($value['Задача']);?></span>
+                    </label>
+                </td>
+                <td class="task__date"><?=htmlspecialchars($value['Дата выполнения']);?></td>
+
+                <td class="task__controls">
+                    <?=$value['Выполнен']?>
+                </td>
+            </tr>
+       <?php } else{if ($_GET['tab'] < 0 | $_GET['tab'] > 5){header("HTTP/1.0 404 Not Found");}}} endforeach; ?>
 
     </table>
-</main>
