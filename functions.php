@@ -15,12 +15,11 @@ function renderTemplate($path, $arr){
 
 function url_add($int){
     $_GET['tab'] = $int;
-   return ('http://localhost/doingsdone/128516-doingsdone/index.php?tab='.$_GET['tab']);
 };
 
-function action_progect($index){
+function action_project($index){
     if ($index == $_GET['tab']) {
-       return print('main-navigation__list-item--active">');
+        return print('main-navigation__list-item--active">');
     } else {
         return print('">');
     }

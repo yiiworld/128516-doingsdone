@@ -73,6 +73,6 @@
                     <?=$value['Выполнен']?>
                 </td>
             </tr>
-       <?php } else{if (($_GET['tab'] < 0) || ($_GET['tab'] > 5)){header('Location: /error404/');  break;}}} endforeach; ?>
+       <?php } } endforeach; ?>
 
     </table>

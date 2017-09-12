@@ -16,8 +16,6 @@ $date_deadline = strtotime ("28.08.2017");
 $days_until_deadline = ($task_deadline_ts - $date_deadline)/86400;
 
 
-
-
 function sum_of_cases($arr1,$str){
     $input = 0;
     $study = 0;
@@ -105,19 +103,24 @@ function sum_of_cases($arr1,$str){
 
                 <nav class="main-navigation">
                     <ul class="main-navigation__list">
-                        <form action="index.php" method="get">
+
                         <?php
-                        $index = 0;
-                        $count = count($project_arr);
-                        while ($index <= $count-1) {
+
+                       foreach ($project_arr as $key => $value) {
+
                             print('<li class="main-navigation__list-item ');
-                            action_progect($index);
-                            print('<a class="main-navigation__list-item-link" href="'.url_add($index).'">'.$project_arr[$index].'</a>');
-                             print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$index]).'</span>');
-                            $index++;
+                            if ($key == $_GET['tab']) {
+                                 print(' main-navigation__list-item--active">');
+                            } else {
+                                 print('">');
+                            }
+                            echo ($_GET['tab']);echo ($key);
+                            print('<a class="main-navigation__list-item-link" onclick="'. url_add($key).'" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab='.$key.'">'.$project_arr[$key].'</a>');
+                             print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$key]).'</span>');
+
                         };
                         ?>
-                        </form>
+
                     </ul>
                 </nav>
 
