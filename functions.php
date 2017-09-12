@@ -1,6 +1,4 @@
 <?php
-
-
 function renderTemplate($path, $arr){
 
     if (file_exists($path)){
@@ -13,6 +11,18 @@ function renderTemplate($path, $arr){
         return "";
     }
 
+};
+
+function url_add($int){
+    $_GET['tab'] = $int;
+};
+
+function action_project($index){
+    if ($index == $_GET['tab']) {
+        return print('main-navigation__list-item--active">');
+    } else {
+        return print('">');
+    }
 };
 
 $arr_of_cases = array(
@@ -30,11 +40,8 @@ $arr_of_cases = array(
         "Категория" =>"Домашние дела", "Выполнен" => "Нет"),
 );
 
-$page_main = renderTemplate('templates/index.php',['arr_of_cases' => $arr_of_cases]);
+$project_arr = array(0 => "Все", 1 => "Входящие", 2 => "Учеба",
+    3 => "Работа", 4 => "Домашние дела", 5 => "Авто");
 
-
-
-$content = renderTemplate('templates/layout.php',['title' =>'Дела в порядке', 'arr_of_cases' => $arr_of_cases, 'main' =>$page_main]);
-print ($content);
 
 ?>
