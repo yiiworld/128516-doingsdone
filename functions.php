@@ -13,10 +13,6 @@ function renderTemplate($path, $arr){
 
 };
 
-function url_add($int){
-    $_GET['tab'] = $int;
-};
-
 function action_project($index){
     if ($index == $_GET['tab']) {
         return print('main-navigation__list-item--active">');

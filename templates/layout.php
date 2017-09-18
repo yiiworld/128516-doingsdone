@@ -70,7 +70,7 @@ function sum_of_cases($arr1,$str){
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body><!--class="overlay"-->
+<body<?=$body;?>><!--class="overlay"-->
 <h1 class="visually-hidden">Дела в порядке</h1>
 
 <div class="page-wrapper">
@@ -106,16 +106,10 @@ function sum_of_cases($arr1,$str){
 
                         <?php
 
-                       foreach ($project_arr as $key => $value) {
-
+                          foreach ($project_arr as $key => $value) {
                             print('<li class="main-navigation__list-item ');
-                            if ($key == $_GET['tab']) {
-                                 print(' main-navigation__list-item--active">');
-                            } else {
-                                 print('">');
-                            }
-                            echo ($_GET['tab']);echo ($key);
-                            print('<a class="main-navigation__list-item-link" onclick="'. url_add($key).'" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab='.$key.'">'.$project_arr[$key].'</a>');
+                            action_project($key);
+                            print('<a class="main-navigation__list-item-link"  href="http://localhost/doingsdone/128516-doingsdone/index.php?tab='.$key.'">'.$project_arr[$key].'</a>');
                              print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$key]).'</span>');
 
                         };
@@ -124,7 +118,7 @@ function sum_of_cases($arr1,$str){
                     </ul>
                 </nav>
 
-                <a class="button button--transparent button--plus content__side-button" href="#">Добавить проект</a>
+                <a class="button button--transparent button--plus content__side-button" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить проект</a>
             </section>
             <main class="content__main">
                <?=$main;?>
@@ -172,49 +166,7 @@ function sum_of_cases($arr1,$str){
     </div>
 </footer>
 
-<div class="modal" hidden>
-    <button class="modal__close" type="button" name="button">Закрыть</button>
-
-    <h2 class="modal__heading">Добавление задачи</h2>
-
-    <form class="form" class="" action="index.html" method="post">
-        <div class="form__row">
-            <label class="form__label" for="name">Название <sup>*</sup></label>
-
-            <input class="form__input" type="text" name="name" id="name" value="" placeholder="Введите название">
-        </div>
-
-        <div class="form__row">
-            <label class="form__label" for="project">Проект <sup>*</sup></label>
-
-            <select class="form__input form__input--select" name="project" id="project">
-                <option value="">Входящие</option>
-            </select>
-        </div>
-
-        <div class="form__row">
-            <label class="form__label" for="date">Дата выполнения <sup>*</sup></label>
-
-            <input class="form__input form__input--date" type="text" name="date" id="date" value="" placeholder="Введите дату в формате ДД.ММ.ГГГГ">
-        </div>
-
-        <div class="form__row">
-            <label class="form__label" for="file">Файл</label>
-
-            <div class="form__input-file">
-                <input class="visually-hidden" type="file" name="preview" id="preview" value="">
-
-                <label class="button button--transparent" for="preview">
-                    <span>Выберите файл</span>
-                </label>
-            </div>
-        </div>
-
-        <div class="form__row form__row--controls">
-            <input class="button" type="submit" name="" value="Добавить">
-        </div>
-    </form>
-</div>
+<?=$form;?>
 
 <script type="text/javascript" src="js/script.js"></script>
 </body>
