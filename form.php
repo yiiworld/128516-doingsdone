@@ -3,7 +3,7 @@
 
     <h2 class="modal__heading">Добавление задачи</h2>
 
-    <form class="form" action="index.php" method="post">
+    <form class="form" action="index.php" method="post" enctype="multipart/form-data">
         <div class="form__row">
             <label class="form__label" for="name">Название <sup>*</sup></label>
             <?=$message_name;?>
@@ -35,8 +35,8 @@
             <label class="form__label">Файл</label>
 
             <div class="form__input-file">
-                <input class="visually-hidden <?=$input_error_preview;?>" type="file" name="preview" id="preview" value="">
-                <?=$message_preview;?>
+                <input class="visually-hidden" type="file" name="preview" id="preview" value="<?=$_POST['preview'];?>">
+
                 <label class="button button--transparent" for="preview">
                     <span>Выберите файл</span>
                 </label>
