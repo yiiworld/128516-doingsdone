@@ -33,7 +33,7 @@ if (isset($_POST['submit'])){
                 };
 
                 if (isset($_FILES['preview'])){
-                    move_uploaded_file($_FILES['preview']['tmp_name'],'C:/OSPanel/domains/localhost/doingsdone/128516-doingsdone/'.$_FILES['preview']['name']);
+                    move_uploaded_file($_FILES['preview']['tmp_name'],'./'.$_FILES['preview']['name']);
                 }
 
     if ($one and $two and $tree){

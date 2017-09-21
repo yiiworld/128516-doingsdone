@@ -81,7 +81,7 @@ function sum_of_cases($arr1,$str){
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--plus" href="#">Добавить задачу</a>
+                <a class="main-header__side-item button button--plus" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить задачу</a>
 
                 <div class="main-header__side-item user-menu">
                     <div class="user-menu__image">
@@ -118,7 +118,7 @@ function sum_of_cases($arr1,$str){
                     </ul>
                 </nav>
 
-                <a class="button button--transparent button--plus content__side-button" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить проект</a>
+                <a class="button button--transparent button--plus content__side-button" href="#">Добавить проект</a>
             </section>
             <main class="content__main">
                <?=$main;?>
@@ -135,7 +135,7 @@ function sum_of_cases($arr1,$str){
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
 
-        <a class="main-footer__button button button--plus">Добавить задачу</a>
+        <a class="main-footer__button button button--plus" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить задачу</a>
 
         <div class="main-footer__social social">
             <span class="visually-hidden">Мы в соцсетях:</span>
