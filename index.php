@@ -1,69 +1,10 @@
+
 <?php
 require ('userdata.php');
 require('functions.php');
+var_dump($_SESSION);
+if (isset($_SESSION['user'])) {
 
-session_start();
-
-if (! empty ($_POST ))
-{
-
-    $email = $_POST ['email'];
-    $password = $_POST ['password' ];
-    require ('error_guest_form_email.php');
-    if ($email_error<>'' and $email_message<>'')
-    {
-        $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '',
-            'email_e' => $email_error, 'email_m' => $email_message,
-            'pass_e' => '', 'pass_e' => '']);
-        print($content_guest);
-    }
-    else
-    {
-        if ($user = searchUserByEmail( $email , $users ))
-        {
-            If($user<>null)
-            {
-                if (password_verify( $password , $user ['password' ]))
-                {
-                    $_SESSION ['user' ] = $user ;
-                    header( "Location: /index.php" );
-                }
-            }
-            else
-            {
-                $email_error = ' form__input--error';
-                $email_message = '<p class="form__message">Данный Email не существует</p>';
-                $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '',
-                    'email_e' => $email_error, 'email_m' => $email_message,
-                    'pass_e' => '', 'pass_e' => '']);
-                print($content_guest);
-            }
-
-        }
-    }
-
-}
-else
-{
-    if (isset($_GET['login']))
-    {
-        $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '']);
-        print($content_guest);
-    }
-    else
-    {
-        $content_guest = renderTemplate('templates/guest.php', ['body_guest' => '', 'hidden_guest' => ' hidden']);
-        print($content_guest);
-    };
-};
-
-
-
-
-
-
-
-if (isset($_SESSION['name']) ) {
     If (!isset($_GET['tab'])) {
         $_GET['tab'] = 0;
     }
@@ -77,11 +18,11 @@ if (isset($_SESSION['name']) ) {
             $input_form = renderTemplate('form.php', ['project_arr' => $project_arr, 'message_name' => $name_message, 'input_error_name' => $name_input_error,
                 'message_project' => $project_message, 'input_error_project' => $project_input_error,
                 'message_date' => $date_message, 'input_error_date' => $date_input_error]);
-            $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'body' => ' class = "overlay"',
+            $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'userName'=>$_SESSION['name'], 'body' => ' class = "overlay"',
                 'arr_of_cases' => $arr_of_cases, 'project_arr' => $project_arr, 'main' => $page_main, 'form' => $input_form]);
 
         } else {
-            $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке',
+            $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'userName'=>$_SESSION['name'],
                 'arr_of_cases' => $arr_of_cases, 'project_arr' => $project_arr, 'main' => $page_main]);
         };
 
@@ -91,5 +32,80 @@ if (isset($_SESSION['name']) ) {
         header("HTTP/1.0 404 Not Found");
         exit;
     };
-};
+}
+else
+{
+    if (! empty ($_POST ))
+    {
+
+        $email = htmlspecialchars($_POST ['email']);
+        $password = htmlspecialchars($_POST ['password' ]);
+
+        require ('error_guest_form_email.php');
+
+        if ($email_error<>'' and $email_message<>'')
+        {
+            $_GET['login']=true;
+            $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '',
+                'email_e' => $email_error, 'email_val' =>$email, 'email_m' => $email_message,
+                'pass_e' => '', 'pass_val' =>$password, 'pass_e' => '']);
+            print($content_guest);
+        }
+        else
+        {
+
+            $user = searchUserByEmail( $email , $users );
+
+
+            If($user<>null)
+            {
+
+
+                if (password_verify( $password , $user ['password' ]))
+                {
+                    $_SESSION['user'] = $user['name'] ;
+                    $_SESSION['email']=$user['email'];
+                    var_dump($_SESSION);
+
+                }
+                else
+                {
+                    $_GET['login']=true;
+                    $pass_error = ' form__input--error';
+                    $pass_message = '<p class="form__message">Неверный пароль</p>';
+                    $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '',
+                        'email_e' =>'', 'email_val' =>$email, 'email_m' => '',
+                        'pass_e' => $pass_error, 'pass_val' =>$password,  'pass_m' => $pass_message]);
+                    print($content_guest);
+                }
+            }
+            else
+            {
+                $_GET['login']=true;
+                $email_error = ' form__input--error';
+                $email_message = '<p class="form__message">Данный Email не существует</p>';
+                $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '',
+                    'email_e' => $email_error, 'email_val' =>$email, 'email_m' => $email_message,
+                    'pass_e' => '', 'pass_val' =>$password,  'pass_m' => '']);
+                print($content_guest);
+            }
+
+
+        }
+
+    }
+    else
+    {
+        if (isset($_GET['login']))
+        {
+            $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '']);
+            print($content_guest);
+        }
+        else
+        {
+            $content_guest = renderTemplate('templates/guest.php', ['body_guest' => '', 'hidden_guest' => ' hidden']);
+            print($content_guest);
+        };
+    };
+}
 ?>

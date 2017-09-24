@@ -14,6 +14,11 @@ $date_deadline = strtotime ("28.08.2017");
 // в эту переменную запишите кол-во дней до даты задачи
 $days_until_deadline = ($task_deadline_ts - $date_deadline)/86400;
 
+function closeSession(){
+$_SESSION=[];
+unset($_SESSION);
+header('Location: http://localhost/doingsdone/128516-doingsdone/index.php');
+}
 
 function sum_of_cases($arr1,$str){
     $input = 0;

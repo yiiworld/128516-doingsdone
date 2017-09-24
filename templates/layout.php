@@ -19,7 +19,7 @@
                 <img src="img/logo.png" width="153" height="42" alt="Логитип Дела в порядке">
             </a>
 
-            <?php if ($_SESSION<>[]):?>
+            <?php if ($_SESSION['name']==$user):?>
 
                 <div class="main-header__side">
                     <a class="main-header__side-item button button--plus" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить задачу</a>
@@ -30,19 +30,12 @@
                         </div>
 
                         <div class="user-menu__data">
-                            <p>Константин</p>
+                            <p><?=$userName;?></p>
 
-                            <a href="#">Выйти</a>
+                            <a href="http://localhost/doingsdone/128516-doingsdone/index.php">Выйти</a>
                         </div>
                     </div>
                 </div>
-
-            <?php else: ?>
-
-                <div class="main-header__side">
-                    <a class="main-header__side-item button button--transparent" href="#">Войти</a>
-                </div>
-                <?php header('Location http://localhost/doingsdone/128516-doingsdone/index.php?login') ?>
 
             <?php endif;?>
         </header>

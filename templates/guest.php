@@ -19,7 +19,7 @@
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--transparent" href="http://localhost/doingsdone/128516-doingsdone/index.php?login">Войти</a>
+                <a class="main-header__side-item button button--transparent" href="http://localhost/doingsdone/128516-doingsdone/base.php?login">Войти</a>
             </div>
         </header>
 
@@ -87,7 +87,7 @@
         <div class="form__row">
             <label class="form__label" for="email">E-mail <sup>*</sup></label>
 
-            <input class="form__input <?=$email_e;?>" type="email" name="email" id="email" value="<?php $_POST['email'];?>" placeholder="Введите e-mail">
+            <input class="form__input <?=$email_e;?>" type="email" name="email" id="email" value="<?=$email_val;?>" placeholder="Введите e-mail">
 
             <?=$email_m;?>
         </div>
@@ -95,7 +95,7 @@
         <div class="form__row">
             <label class="form__label" for="password">Пароль <sup>*</sup></label>
 
-            <input class="form__input <?=$pass_e;?>" type="password" name="password" id="password" value="<?php $_POST['password'];?>" placeholder="Введите пароль">
+            <input class="form__input <?=$pass_e;?>" type="password" name="password" id="password" value="<?=$pass_val;?>" placeholder="Введите пароль">
 
             <?=$pass_m;?>
         </div>
