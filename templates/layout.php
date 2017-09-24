@@ -52,7 +52,7 @@
                           foreach ($project_arr as $key => $value) {
                             print('<li class="main-navigation__list-item ');
                             action_project($key);
-                            print('<a class="main-navigation__list-item-link"  href="http://localhost/doingsdone/128516-doingsdone/index.php?tab='.$key.'">'.$project_arr[$key].'</a>');
+                            print('<a class="main-navigation__list-item-link"  href="http://localhost/doingsdone/128516-doingsdone/index.php?'.$_GET['show_completed'].'&tab='.$key.'">'.$project_arr[$key].'</a>');
                              print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$key]).'</span>');
 
                         };

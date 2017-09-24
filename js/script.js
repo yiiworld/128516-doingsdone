@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 
 var expandControls = document.querySelectorAll('.expand-control');
 
@@ -21,5 +21,5 @@ var $checkbox = document.getElementsByClassName('checkbox__input')[0];
 $checkbox.addEventListener('change', function(event) {
   var is_checked = +event.target.checked;
 
-  window.location = '/index.php?show_completed=' + is_checked;
+  window.location = '/doingsdone/128516-doingsdone/index.php?show_completed=' + is_checked;
 });

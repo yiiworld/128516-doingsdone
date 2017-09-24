@@ -5,7 +5,7 @@ session_start();
 
 
 
-if ($_SESSION['user']<>'Игнат') {
+if (!isset($_SESSION['user'])) {
 
 
 
