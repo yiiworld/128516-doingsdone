@@ -30,9 +30,9 @@
                         </div>
 
                         <div class="user-menu__data">
-                            <p><?=$userName;?></p>
+                            <p><?=$userName;?> Костя</p>
 
-                            <a href="http://localhost/doingsdone/128516-doingsdone/index.php">Выйти</a>
+                            <a href="http://localhost/doingsdone/128516-doingsdone/index.php?logout">Выйти</a>
                         </div>
                     </div>
                 </div>

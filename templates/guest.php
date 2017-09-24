@@ -19,7 +19,7 @@
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--transparent" href="http://localhost/doingsdone/128516-doingsdone/base.php?login">Войти</a>
+                <a class="main-header__side-item button button--transparent" href="http://localhost/doingsdone/128516-doingsdone/index.php?login">Войти</a>
             </div>
         </header>
 
