@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="user-menu__data">
-                            <p><?=$userName;?> Костя</p>
+                            <p><?=$userName;?></p>
 
                             <a href="http://localhost/doingsdone/128516-doingsdone/index.php?logout">Выйти</a>
                         </div>

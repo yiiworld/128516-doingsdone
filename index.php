@@ -4,8 +4,6 @@
 session_start();
 
 
-echo ($_SESSION['user']);
-
 
 if ($_SESSION['user']<>'Игнат') {
 
@@ -109,11 +107,11 @@ require ('functions.php');
             $input_form = renderTemplate('form.php', ['project_arr' => $project_arr, 'message_name' => $name_message, 'input_error_name' => $name_input_error,
                 'message_project' => $project_message, 'input_error_project' => $project_input_error,
                 'message_date' => $date_message, 'input_error_date' => $date_input_error]);
-            $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'userName'=>$_SESSION['name'], 'body' => ' class = "overlay"',
+            $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'userName'=>$_SESSION['user'], 'body' => ' class = "overlay"',
                 'arr_of_cases' => $arr_of_cases, 'project_arr' => $project_arr, 'main' => $page_main, 'form' => $input_form]);
 
         } else {
-            $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'userName'=>$_SESSION['name'],
+            $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'userName'=>$_SESSION['user'],
                 'arr_of_cases' => $arr_of_cases, 'project_arr' => $project_arr, 'main' => $page_main]);
         };
 
