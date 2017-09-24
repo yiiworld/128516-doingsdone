@@ -1,31 +1,12 @@
 <?php
-
-
 session_start();
-
-
-
 if (!isset($_SESSION['user'])) {
-
-
-
     require ('userdata.php');
     require('functions.php');
-
-
-
-
-
-
-
-
     if (!empty ($_POST)) {
-
         $email = htmlspecialchars($_POST ['email']);
         $password = htmlspecialchars($_POST ['password']);
-
         require('error_guest_form_email.php');
-
         if ($email_error <> '' and $email_message <> '') {
             $_GET['login'] = true;
             $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '',
@@ -33,19 +14,17 @@ if (!isset($_SESSION['user'])) {
                 'pass_e' => '', 'pass_val' => $password, 'pass_e' => '']);
             print($content_guest);
         } else {
-
             $user = searchUserByEmail($email, $users);
-
-
             If ($user <> null) {
-
-
                 if (password_verify($password, $user ['password'])) {
-
                     $_SESSION['user'] = $user['name'];
                     $_SESSION['email'] = $user['email'];
-                    header('Location: http://localhost/doingsdone/128516-doingsdone/index.php');
-
+					 
+					if(isset($_COOKIE['show_completed']))
+					{
+						header('Location: http://localhost/doingsdone/128516-doingsdone/index.php?show_completed='.$_COOKIE['show_completed']);
+					}
+                   
                 } else {
                     $_GET['login'] = true;
                     $pass_error = ' form__input--error';
@@ -64,10 +43,7 @@ if (!isset($_SESSION['user'])) {
                     'pass_e' => '', 'pass_val' => $password, 'pass_m' => '']);
                 print($content_guest);
             }
-
-
         }
-
     } else {
         if (isset($_GET['login'])) {
             $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '']);
@@ -78,51 +54,44 @@ if (!isset($_SESSION['user'])) {
         };
     };
 }
-
-
 else {
-
 require ('functions.php');
 
 
-    if (isset($_GET['logout'])){
+	
+	
+	if (isset($_GET['show_completed']))
+	{
+		setcookie('show_completed', $_GET['show_completed'], strtotime("31-12-2020"));
+	}
 
+
+
+    if (isset($_GET['logout'])){
         unset($_SESSION['email']);
         unset($_SESSION['user']);
-
         header('Location: http://localhost/doingsdone/128516-doingsdone/index.php');
-
     };
-
     If (!isset($_GET['tab'])) {
         $_GET['tab'] = 0;
     }
     if (array_key_exists($_GET['tab'], $project_arr)) {
-
         require('error_form.php');
-
         $page_main = renderTemplate('templates/index.php', ['arr_of_cases' => $arr_of_cases, 'project_arr' => $project_arr]);
-
         if (isset($_GET['add'])) {
             $input_form = renderTemplate('form.php', ['project_arr' => $project_arr, 'message_name' => $name_message, 'input_error_name' => $name_input_error,
                 'message_project' => $project_message, 'input_error_project' => $project_input_error,
                 'message_date' => $date_message, 'input_error_date' => $date_input_error]);
             $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'userName'=>$_SESSION['user'], 'body' => ' class = "overlay"',
                 'arr_of_cases' => $arr_of_cases, 'project_arr' => $project_arr, 'main' => $page_main, 'form' => $input_form]);
-
         } else {
             $content = renderTemplate('templates/layout.php', ['title' => 'Дела в порядке', 'userName'=>$_SESSION['user'],
                 'arr_of_cases' => $arr_of_cases, 'project_arr' => $project_arr, 'main' => $page_main]);
         };
-
         print ($content);
-
     } else {
         header("HTTP/1.0 404 Not Found");
         exit;
     };
 };
-
-
-
 ?>

@@ -1,21 +1,14 @@
 <?php
 $show_complete_tasks = rand(0, 1);
-
 // устанавливаем часовой пояс в Московское время
 date_default_timezone_set('Europe/Moscow');
-
 $days = rand(-3, 3);
 $task_deadline_ts = strtotime("+" . $days . " day midnight"); // метка времени даты выполнения задачи
 $current_ts = strtotime('now midnight'); // текущая метка времени
-
 // запишите сюда дату выполнения задачи в формате дд.мм.гггг
 $date_deadline = strtotime ("28.08.2017");
-
 // в эту переменную запишите кол-во дней до даты задачи
 $days_until_deadline = ($task_deadline_ts - $date_deadline)/86400;
-
-
-
 function sum_of_cases($arr1,$str){
     $input = 0;
     $study = 0;
@@ -58,9 +51,7 @@ function sum_of_cases($arr1,$str){
             return $my_all;
     }
 };
-
 function renderTemplate($path, $arr){
-
     if (file_exists($path)){
       ob_start();
         extract($arr);
@@ -70,9 +61,7 @@ function renderTemplate($path, $arr){
     }else {
         return "";
     }
-
 };
-
 function action_project($index){
     if ($index == $_GET['tab']) {
         return print('main-navigation__list-item--active">');
@@ -80,7 +69,6 @@ function action_project($index){
         return print('">');
     }
 };
-
 $arr_of_cases = array(
     array("Задача" => "Собеседование в IT компании", "Дата выполнения" => "01.06.2018",
         "Категория" =>"Работа", "Выполнен" => "Нет"),
@@ -95,10 +83,8 @@ $arr_of_cases = array(
     array("Задача" => "Заказать пиццу", "Дата выполнения" => "Нет",
         "Категория" =>"Домашние дела", "Выполнен" => "Нет"),
 );
-
 $project_arr = array(0 => "Все", 1 => "Входящие", 2 => "Учеба",
     3 => "Работа", 4 => "Домашние дела", 5 => "Авто");
-
 function searchUserByEmail($email,$users){
   $result=null;
   foreach ($users as $user){
@@ -109,5 +95,4 @@ function searchUserByEmail($email,$users){
   }
     return $result;
 };
-
 ?>
