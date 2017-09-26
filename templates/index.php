@@ -1,4 +1,4 @@
-﻿
+﻿<?php require('init.php');?>
     <h2 class="content__main-heading">Список задач</h2>
 
     <form class="search-form" action="index.php" method="post">
@@ -43,94 +43,97 @@
     <table class="tasks">
 
         <?php
+		
+		
+		
 
-        foreach ( $arr_of_cases as $key =>$value):
-            if ($project_arr[$_GET['tab']] == $value['Категория'])
-            {
-                if ($_GET['show_completed']==1)
-                {?>
-    
-                    <tr class="tasks__item task <?php if ($value['Выполнен']=='Да') echo (" task--completed")?>">
-                        <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden" type="checkbox" >
-                                <span class="checkbox__text"><?=htmlspecialchars($value['Задача']);?></span>
-                            </label>
-                        </td>
-                        <td class="task__date"><?=htmlspecialchars($value['Дата выполнения']);?></td>
-        
-                        <td class="task__controls">
-                            <?=$value['Выполнен']?>
-                        </td>
-                    </tr>
-
-                <?php 
-                }
-                else
-                {
-                    if ($value['Выполнен']<>'Да')
-                    {?>
-                        <tr class="tasks__item task <?php if ($value['Выполнен']=='Да') echo (" task--completed")?>">
-                            <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                            <input class="checkbox__input visually-hidden" type="checkbox" >
-                            <span class="checkbox__text"><?=htmlspecialchars($value['Задача']);?></span>
-                            </label>
-                        </td>
-                        <td class="task__date"><?=htmlspecialchars($value['Дата выполнения']);?></td>
-        
-                        <td class="task__controls">
-                            <?=$value['Выполнен']?>
-                        </td>
-                    </tr>
-                    <?php 
-                    }
-                    
-                }
-            }
-            else
-            { 
-                if ($_GET['show_completed']==1)
-                {?>
-    
-                    <tr class="tasks__item task <?php if ($value['Выполнен']=='Да') echo (" task--completed")?>">
-                        <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                                <input class="checkbox__input visually-hidden" type="checkbox" >
-                                <span class="checkbox__text"><?=htmlspecialchars($value['Задача']);?></span>
-                            </label>
-                        </td>
-                        <td class="task__date"><?=htmlspecialchars($value['Дата выполнения']);?></td>
-        
-                        <td class="task__controls">
-                            <?=$value['Выполнен']?>
-                        </td>
-                    </tr>
-
-                <?php 
-                }
-                else
-                {
-                    if ($value['Выполнен']<>'Да')
-                    {?>
-                        <tr class="tasks__item task <?php if ($value['Выполнен']=='Да') echo (" task--completed")?>">
-                            <td class="task__select">
-                            <label class="checkbox task__checkbox">
-                            <input class="checkbox__input visually-hidden" type="checkbox" >
-                            <span class="checkbox__text"><?=htmlspecialchars($value['Задача']);?></span>
-                            </label>
-                        </td>
-                        <td class="task__date"><?=htmlspecialchars($value['Дата выполнения']);?></td>
-        
-                        <td class="task__controls">
-                            <?=$value['Выполнен']?>
-                        </td>
-                    </tr>
-                    <?php 
-                    }
-                    
-                }
-            } endforeach; ?>
-            
-
+		
+        foreach ( $arr_of_cases1 as $key =>$value)
+		{
+			if($arr_of_cases1[$key][name_user] == $_SESSION['user'])
+			{
+				if ($project_arr1[$_GET['tab']]['project_name']=='Все')
+				{
+					if ($_GET['show_completed']==0)
+						{
+							if ($value['execution']==0){
+							?>
+								<tr class="tasks__item task">
+									<td class="task__select">
+										<label class="checkbox task__checkbox">
+											<input class="checkbox__input visually-hidden" type="checkbox" >
+											<span class="checkbox__text"><?=htmlspecialchars($value['task_name']);?></span>
+										</label>
+									</td>
+									<td class="task__date"><?=htmlspecialchars($value['date(`date_execution`)']);?></td>
+					
+									<td class="task__controls">
+										<?php if($value['execution']==0){echo('Нет');}else{echo('Да');}?>
+									</td>
+								</tr>
+							<?
+							}
+						}
+						else
+						{?>
+							<tr class="tasks__item task <?php if ($value['execution']=='Да') echo (" task--completed")?>">
+								<td class="task__select">
+									<label class="checkbox task__checkbox">
+										<input class="checkbox__input visually-hidden" type="checkbox" >
+										<span class="checkbox__text"><?=htmlspecialchars($value['task_name']);?></span>
+									</label>
+								</td>
+								<td class="task__date"><?=htmlspecialchars($value['date(`date_execution`)']);?></td>
+				
+								<td class="task__controls">
+									<?php if($value['execution']==0){echo('Нет');}else{echo('Да');}?>
+								</td>
+							</tr>
+					  <?}
+				} 
+				else
+				{
+					if ($project_arr1[$_GET['tab']]['project_name'] == $value['project_name'])
+					{
+						
+						if ($_GET['show_completed']==0)
+						{
+							if ($value['execution']==0){
+							?>
+								<tr class="tasks__item task">
+									<td class="task__select">
+										<label class="checkbox task__checkbox">
+											<input class="checkbox__input visually-hidden" type="checkbox" >
+											<span class="checkbox__text"><?=htmlspecialchars($value['task_name']);?></span>
+										</label>
+									</td>
+									<td class="task__date"><?=htmlspecialchars($value['date(`date_execution`)']);?></td>
+					
+									<td class="task__controls">
+										<?php if($value['execution']==0){echo('Нет');}else{echo('Да');}?>
+									</td>
+								</tr>
+							<?
+							}
+						}
+						else
+						{?>
+							<tr class="tasks__item task <?php if ($value['execution']=='Да') echo (" task--completed")?>">
+								<td class="task__select">
+									<label class="checkbox task__checkbox">
+										<input class="checkbox__input visually-hidden" type="checkbox" >
+										<span class="checkbox__text"><?=htmlspecialchars($value['task_name']);?></span>
+									</label>
+								</td>
+								<td class="task__date"><?=htmlspecialchars($value['date(`date_execution`)']);?></td>
+				
+								<td class="task__controls">
+									<?php if($value['execution']==0){echo('Нет');}else{echo('Да');}?>
+								</td>
+							</tr>
+					  <?}
+					}
+				}
+			}
+		};?>
     </table>

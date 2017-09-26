@@ -1,3 +1,4 @@
+<?php require('init.php');?>
 <div class="modal">
     <button class="modal__close"  type="button" name="button" >Закрыть</button>
 
@@ -14,12 +15,12 @@
             <label class="form__label" for="project">Проект <sup>*</sup></label>
             <?=$message_project;?>
             <select class="form__input form__input--select <?=$input_error_project;?>" name="project" id="project">
-                <?php foreach ($project_arr as $key => $value){
-                    If($key<>0) {
+                <?php foreach ($project_arr1 as $key => $value){
+                    if($key<>0) {
                         if($key == $_POST['project']){
-                            Print('<option selected value="' . $key . '">' . $value . '</option>');
+                            print('<option selected value="' . $key . '">' . $value["project_name"] . '</option>');
                         }else{
-                        Print('<option  value="' . $key . '">' . $value . '</option>');
+                        print('<option  value="' . $key . '">' . $value["project_name"] . '</option>');
                         }
                     }};?>
             </select>

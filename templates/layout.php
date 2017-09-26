@@ -1,3 +1,4 @@
+<?php require('init.php');?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +23,7 @@
             <?php if ($_SESSION['name']==$user):?>
 
                 <div class="main-header__side">
-                    <a class="main-header__side-item button button--plus" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить задачу</a>
+                    <a class="main-header__side-item button button--plus" href="./index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить задачу</a>
 
                     <div class="main-header__side-item user-menu">
                         <div class="user-menu__image">
@@ -32,7 +33,7 @@
                         <div class="user-menu__data">
                             <p><?=$userName;?></p>
 
-                            <a href="http://localhost/doingsdone/128516-doingsdone/index.php?logout">Выйти</a>
+                            <a href="./index.php?logout">Выйти</a>
                         </div>
                     </div>
                 </div>
@@ -48,12 +49,13 @@
                     <ul class="main-navigation__list">
 
                         <?php
-
-                          foreach ($project_arr as $key => $value) {
+						
+                          foreach ($project_arr1 as $key => $value) {
+							  
                             print('<li class="main-navigation__list-item ');
                             action_project($key);
-                            print('<a class="main-navigation__list-item-link"  href="http://localhost/doingsdone/128516-doingsdone/index.php?'.$_GET['show_completed'].'&tab='.$key.'">'.$project_arr[$key].'</a>');
-                             print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases,$project_arr[$key]).'</span>');
+                            print('<a class="main-navigation__list-item-link"  href="./index.php?'.$_GET['show_completed'].'&tab='.$key.'">'.$project_arr1[$key]["project_name"].'</a>');
+                             print('<span class="main-navigation__list-item-count">'.sum_of_cases($arr_of_cases1,$project_arr1[$key]["project_name"]).'</span>');
 
                         };
                         ?>
@@ -61,7 +63,7 @@
                     </ul>
                 </nav>
 
-                <a class="button button--transparent button--plus content__side-button" href="#">Добавить проект</a>
+                <a class="button button--transparent button--plus content__side-button" href="./index.php?show_completed=0&project=1">Добавить проект</a>
             </section>
             <main class="content__main">
                <?=$main;?>
@@ -78,7 +80,7 @@
             <p>Веб-приложение для удобного ведения списка дел.</p>
         </div>
 
-        <a class="main-footer__button button button--plus" href="http://localhost/doingsdone/128516-doingsdone/index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить задачу</a>
+        <a class="main-footer__button button button--plus" href="./index.php?tab=<?echo($_GET['tab'].'&add');?>">Добавить задачу</a>
 
         <div class="main-footer__social social">
             <span class="visually-hidden">Мы в соцсетях:</span>

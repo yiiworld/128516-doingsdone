@@ -1,29 +1,44 @@
 <?php
 session_start();
+
+require ('functions.php');
+require('init.php');
+
 if (!isset($_SESSION['user'])) {
-    require ('userdata.php');
-    require('functions.php');
-	require('init.php');
+
+
     if (!empty ($_POST)) {
         $email = htmlspecialchars($_POST ['email']);
         $password = htmlspecialchars($_POST ['password']);
         require('error_guest_form_email.php');
         if ($email_error <> '' and $email_message <> '') {
+			/*РЕГИСТРАЦИЯ*/
+			
+			
+			
+			
+			
+			
+			
+			
             $_GET['login'] = true;
             $content_guest = renderTemplate('templates/guest.php', ['body_guest' => ' overlay', 'hidden_guest' => '',
                 'email_e' => $email_error, 'email_val' => $email, 'email_m' => $email_message,
                 'pass_e' => '', 'pass_val' => $password, 'pass_e' => '']);
             print($content_guest);
         } else {
-            $user = searchUserByEmail($email, $users);
-            If ($user <> null) {
+			$user_sql_arr=mysqli_fetch_all(mysqli_query($connect, 'SELECT * from user'),MYSQLI_ASSOC);
+			
+            $user = searchUserByEmail($email, $user_sql_arr);
+	
+            if ($user <> null) {
                 if (password_verify($password, $user ['password'])) {
-                    $_SESSION['user'] = $user['name'];
-                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['user'] = $user["name_user"];
+                    $_SESSION['email'] = $user["email"];
 					 
 					if(isset($_COOKIE['show_completed']))
 					{
-						header('Location: http://localhost/doingsdone/128516-doingsdone/index.php?show_completed='.$_COOKIE['show_completed']);
+						header('Location: index.php?show_completed='.$_COOKIE['show_completed']);
 					}
                    
                 } else {
@@ -56,8 +71,7 @@ if (!isset($_SESSION['user'])) {
     };
 }
 else {
-require ('functions.php');
-require('init.php');
+
 	
 	
 	if (isset($_GET['show_completed']))
@@ -70,12 +84,13 @@ require('init.php');
     if (isset($_GET['logout'])){
         unset($_SESSION['email']);
         unset($_SESSION['user']);
-        header('Location: http://localhost/doingsdone/128516-doingsdone/index.php');
+        header('Location: index.php');
     };
-    If (!isset($_GET['tab'])) {
+	
+    if (!isset($_GET['tab'])) {
         $_GET['tab'] = 0;
-    }
-    if (array_key_exists($_GET['tab'], $project_arr)) {
+    };
+    if (array_key_exists($_GET['tab'], $project_arr1)) {
         require('error_form.php');
         $page_main = renderTemplate('templates/index.php', ['arr_of_cases' => $arr_of_cases, 'project_arr' => $project_arr]);
         if (isset($_GET['add'])) {
