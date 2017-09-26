@@ -95,4 +95,27 @@ function searchUserByEmail($email,$users){
   }
     return $result;
 };
+
+
+require('mysql_helper.php');
+
+//Ф1
+function select_data($link,$sql,$array=[])
+{
+	if ($link==false)
+	{
+		print(renderTemplate('templates/error.php', ['error'=>mysql_connect_error()]));
+	}
+	else
+	{
+		db_get_prepare_stmt($link,$sql,$array);
+		$resul = mysqli_fetch_all(tmysqli_stmt_execute($stmt),MYSQLI_ASSOC);
+	}
+	return $result;
+};
+
+
+
+
+
 ?>
