@@ -109,11 +109,63 @@ function select_data($link,$sql,$array=[])
 	else
 	{
 		db_get_prepare_stmt($link,$sql,$array);
-		$resul = mysqli_fetch_all(tmysqli_stmt_execute($stmt),MYSQLI_ASSOC);
+		$result = mysqli_fetch_all(tmysqli_stmt_execute($stmt),MYSQLI_ASSOC);
 	}
 	return $result;
 };
 
+
+//Ф2
+
+function insert_data($link,$table_name,$param=[])
+{
+	if($link == false)
+	{
+		$result=false;
+	}
+	else
+	{
+		$placeholder='';
+		$param_name='';
+		$arr_param=[];
+		foreach($param as $key => $value){
+			$placeholder.='?,';
+			$param_name .= '`'.strval($key).'`,';
+			$arr_param[] = $value;
+		};
+		
+		$placeholder = substr($placeholder,0,-1);
+		$param_name = substr($param_name,0,-1);
+		
+		$sql='INSERT INTO `'.$lable_name.'`('.$param_name.') VALUES ('.$placeholder.');';
+		db_get_prepare_stmt($link,$sql,$arr_param);
+		if (tmysqli_stmt_execute($stmt))
+		{
+			$result =mysqli_insert_id(tmysqli_stmt_execute($stmt));
+		}
+		else
+		{
+			$result=false;
+		}
+	}
+	
+	return $result
+};
+
+//Ф3
+function exec_query($link,$sql,$array=[])
+{
+	if ($link==false)
+	{
+		$result=false;
+	}
+	else
+	{
+		db_get_prepare_stmt($link,$sql,$array);
+		$result = tmysqli_stmt_execute($stmt);
+	}
+	return $result;
+};
 
 
 
