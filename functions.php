@@ -104,7 +104,7 @@ function select_data($link,$sql,$array=[])
 {
 	if ($link==false)
 	{
-		print(renderTemplate('templates/error.php', ['error'=>mysql_connect_error()]));
+		$result=[];
 	}
 	else
 	{
