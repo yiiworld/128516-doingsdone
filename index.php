@@ -3,6 +3,7 @@ session_start();
 if (!isset($_SESSION['user'])) {
     require ('userdata.php');
     require('functions.php');
+	require('init.php');
     if (!empty ($_POST)) {
         $email = htmlspecialchars($_POST ['email']);
         $password = htmlspecialchars($_POST ['password']);
@@ -56,8 +57,7 @@ if (!isset($_SESSION['user'])) {
 }
 else {
 require ('functions.php');
-
-
+require('init.php');
 	
 	
 	if (isset($_GET['show_completed']))
