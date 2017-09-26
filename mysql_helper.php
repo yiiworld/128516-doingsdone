@@ -40,6 +40,6 @@ function db_get_prepare_stmt($link, $sql, $data = []) {
         $func = 'mysqli_stmt_bind_param';
         $func(...$values);
     }
-
+print($stmt);
     return $stmt;
 }
