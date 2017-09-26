@@ -26,7 +26,7 @@ INSERT INTO `tasks`(`task_name`, `date_execution`, `execution`, `id_user`, `id_p
 INSERT INTO `tasks`(`task_name`, `date_execution`, `execution`, `id_user`, `id_project`) VALUES 
 ("Заказать пиццу",null,0,3,(SELECT `id_project` FROM `project` WHERE `project_name` = "Домашние дела"));
 
-получить список из всех проектов для одного пользователя:
+/* получить список из всех проектов для одного пользователя:*/
 SELECT 
 	`project_name` 
 FROM 
@@ -36,7 +36,7 @@ FROM
 		and 
 		tasks.id_project=project.id_project;
 
-получить список из всех задач для одного проекта:
+/*получить список из всех задач для одного проекта:*/
 SELECT 
 	`task_name` 
 FROM 
@@ -46,7 +46,7 @@ FROM
 		and 
 		tasks.id_project=project.id_project;
 
-пометить задачу как выполненную:
+/*пометить задачу как выполненную:*/
 UPDATE 
 	`tasks` 
 SET 
@@ -56,7 +56,7 @@ SET
 		AND 
 		tasks.id_project=(SELECT `id_project` FROM `project` WHERE project.project_name="Домашние дела");
 		
-получить все задачи для завтрашнего дня:
+/*получить все задачи для завтрашнего дня:*/
 SELECT 
 	`task_name` 
 FROM 
@@ -68,7 +68,7 @@ FROM
 	AND 
 		DAY(date_execution)=DAY(DATE_ADD(CURDATE(),INTERVAL 1 DAY));		
 
-обновить название задачи по её идентификатору:
+/*обновить название задачи по её идентификатору:*/
 UPDATE 
 	`tasks` 
 SET 
