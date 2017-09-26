@@ -19,7 +19,7 @@
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--transparent" href="http://localhost/doingsdone/128516-doingsdone/index.php?login">Войти</a>
+                <a class="main-header__side-item button button--transparent" href="./index.php?login">Войти</a>
             </div>
         </header>
 
@@ -33,7 +33,7 @@
                     <p>После создания аккаунта, пользователь может начать вносить свои дела, деля их по проектам и указывая сроки.</p>
                 </div>
 
-                <a class="welcome__button button" href="#">Зарегистрироваться</a>
+                <a class="welcome__button button" href="./index.php?reg=1">Зарегистрироваться</a>
             </section>
         </div>
     </div>
